@@ -1,10 +1,16 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import Navbar from './Navbar';
-import Footer from './Footer';
 
-export default function ConditionalLayout({ children }: { children: React.ReactNode }) {
+export default function ConditionalLayout({
+    children,
+    navbar,
+    footer
+}: {
+    children: React.ReactNode;
+    navbar: React.ReactNode;
+    footer: React.ReactNode;
+}) {
     const pathname = usePathname();
 
     const disableNavAndFooter = [
@@ -17,13 +23,13 @@ export default function ConditionalLayout({ children }: { children: React.ReactN
 
     return (
         <>
-            {!isLayoutDisabled && <Navbar />}
+            {!isLayoutDisabled && navbar}
 
             <main className="w-full">
                 {children}
             </main>
 
-            {!isLayoutDisabled && <Footer />}
+            {!isLayoutDisabled && footer}
         </>
     );
 }

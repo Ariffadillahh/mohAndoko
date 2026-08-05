@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { BiLogoGmail } from 'react-icons/bi';
+import { FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 export default function Footer() {
     return (
@@ -8,7 +10,7 @@ export default function Footer() {
 
                     <div className="md:col-span-1 space-y-4">
                         <h3 className="font-serif text-xl font-bold text-pureWhite tracking-wide">
-                            <span className="text-goldAccent">Mohammad</span> Handoko
+                            <span className="text-goldAccent">Mohamad</span> Andoko
                         </h3>
                         <p className="text-[13px] font-light leading-relaxed text-pureWhite/70 pr-4">
                             Indonesia&apos;s Trusted Financial Planning & Wealth Management Training Consultant. Lebih dari 20 tahun pengalaman mendampingi bank, institusi, dan keluarga Indonesia.
@@ -58,8 +60,33 @@ export default function Footer() {
                 <div className="pt-6 flex flex-col md:flex-row justify-between items-center text-[11px] text-pureWhite/40 gap-4 tracking-wide">
                     <p>© {new Date().getFullYear()} PT Cerdas Keuangan Indonesia. All rights reserved.</p>
                     <div className="flex gap-6">
-                        <Link href="/privacy" className="hover:text-goldAccent transition-colors">Privacy Policy</Link>
-                        <Link href="/terms" className="hover:text-goldAccent transition-colors">Terms of Service</Link>
+                        <div className="flex items-center gap-2">
+                            <Link
+                                href="https://www.instagram.com/andokomohamad"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-8 h-8 rounded-full bg-pureWhite/5 flex items-center justify-center text-pureWhite/70 hover:bg-goldAccent hover:text-navyBlue transition-all duration-300"
+                                aria-label="Instagram"
+                            >
+                                <FaInstagram className="w-4 h-4" />
+                            </Link>
+                            <Link
+                                href="mailto:andoko99@gmail.com"
+                                className="w-8 h-8 rounded-full bg-pureWhite/5 flex items-center justify-center text-pureWhite/70 hover:bg-goldAccent hover:text-navyBlue transition-all duration-300"
+                                aria-label="Email"
+                            >
+                                <BiLogoGmail className="w-4 h-4" />
+                            </Link>
+                            <Link
+                                href="https://www.linkedin.com/in/mohamad-andoko-mm-cfp-qwp-aepp-06883538/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-8 h-8 rounded-full bg-pureWhite/5 flex items-center justify-center text-pureWhite/70 hover:bg-goldAccent hover:text-navyBlue transition-all duration-300"
+                                aria-label="LinkedIn"
+                            >
+                                <FaLinkedinIn className="w-4 h-4" />
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>

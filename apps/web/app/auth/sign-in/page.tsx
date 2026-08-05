@@ -4,24 +4,51 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { HiOutlineLockClosed, HiArrowRight, HiOutlineSparkles } from 'react-icons/hi2';
 import { HiOutlineMail } from 'react-icons/hi';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+import { useLogin } from '../../../hooks/useAuth';
+
+const loginSchema = yup.object().shape({
+    email: yup.string().email('Format email tidak valid').required('Alamat email wajib diisi'),
+    password: yup.string().required('Password wajib diisi'),
+    rememberMe: yup.boolean(),
+});
+
+type LoginFormValues = yup.InferType<typeof loginSchema>;
 
 export default function SignInPage() {
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<LoginFormValues>({
+        resolver: yupResolver(loginSchema),
+    });
+
+    const { mutate: loginAccount, isPending } = useLogin();
+
+    const onSubmit = (data: LoginFormValues) => {
+        loginAccount({
+            email: data.email,
+            password: data.password,
+            rememberMe: data.rememberMe 
+        });
+    };
+
     return (
         <div className="min-h-screen flex items-stretch bg-pureWhite overflow-hidden">
 
-            {/* ================= SISI KIRI: BRANDING & VISUAL ================= */}
             <motion.section
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 className="relative hidden lg:flex lg:w-1/2 bg-navyBlue text-pureWhite p-16 flex-col justify-between overflow-hidden"
             >
-                {/* ORNAMENT: Grid & Glow */}
                 <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:3rem_3rem]"></div>
                 <div className="absolute -top-20 -left-20 w-96 h-96 bg-goldAccent/10 blur-[120px] rounded-full pointer-events-none"></div>
                 <div className="absolute -bottom-20 -right-20 w-80 h-80 bg-goldAccent/5 blur-[100px] rounded-full pointer-events-none"></div>
 
-                {/* Logo */}
                 <Link href="/" className="flex flex-col relative z-10 w-max group leading-none">
                     <span className="font-serif text-xl tracking-wide text-pureWhite">
                         CERDAS <span className="font-bold text-goldAccent group-hover:text-pureWhite transition-colors">KEUANGAN</span>
@@ -31,7 +58,6 @@ export default function SignInPage() {
                     </span>
                 </Link>
 
-                {/* Content/Quote with Floating Animation */}
                 <motion.div
                     animate={{ y: [0, -10, 0] }}
                     transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
@@ -46,20 +72,17 @@ export default function SignInPage() {
                     </p>
                 </motion.div>
 
-                {/* Footer */}
                 <p className="relative z-10 text-xs text-pureWhite/40 font-light">
                     © 2026 PT Cerdas Keuangan Indonesia. All rights reserved.
                 </p>
             </motion.section>
 
-            {/* ================= SISI KANAN: FORMULIR ================= */}
             <motion.section
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="w-full lg:w-1/2 flex flex-col justify-center px-6 md:px-16 lg:px-24 py-12 relative"
             >
-                {/* Mobile Logo Only */}
                 <div className="lg:hidden mb-12 text-center">
                     <Link href="/" className="flex flex-col group leading-none items-center">
                         <span className="font-serif text-2xl tracking-wide text-navyBlue">
@@ -75,8 +98,7 @@ export default function SignInPage() {
                     <h1 className="font-serif text-3xl md:text-4xl text-navyBlue mb-3">Sign In ke Portal Anda</h1>
                     <p className="text-sm text-navyBlue/60 mb-10">Masukkan detail akun Anda untuk melanjutkan.</p>
 
-                    <form className="space-y-6">
-                        {/* Email Input */}
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                         <div>
                             <label htmlFor="email" className="block text-xs font-semibold text-navyBlue/80 uppercase tracking-wider mb-2">Alamat Email</label>
                             <div className="relative group">
@@ -86,15 +108,14 @@ export default function SignInPage() {
                                 <input
                                     type="email"
                                     id="email"
-                                    name="email"
-                                    required
                                     placeholder="anda@email.com"
-                                    className="w-full pl-11 pr-4 py-3 border border-softSilver rounded-lg text-sm text-navyBlue placeholder:text-navyBlue/30 focus:ring-2 focus:ring-goldAccent/20 focus:border-goldAccent transition-all outline-none"
+                                    {...register('email')}
+                                    className={`w-full pl-11 pr-4 py-3 border rounded-lg text-sm text-navyBlue placeholder:text-navyBlue/30 focus:ring-2 focus:ring-goldAccent/20 transition-all outline-none ${errors.email ? 'border-red-500 focus:border-red-500' : 'border-softSilver focus:border-goldAccent'}`}
                                 />
                             </div>
+                            {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>}
                         </div>
 
-                        {/* Password Input */}
                         <div>
                             <div className="flex items-center justify-between mb-2">
                                 <label htmlFor="password" className="block text-xs font-semibold text-navyBlue/80 uppercase tracking-wider">Password</label>
@@ -107,32 +128,31 @@ export default function SignInPage() {
                                 <input
                                     type="password"
                                     id="password"
-                                    name="password"
-                                    required
                                     placeholder="••••••••"
-                                    className="w-full pl-11 pr-4 py-3 border border-softSilver rounded-lg text-sm text-navyBlue placeholder:text-navyBlue/30 focus:ring-2 focus:ring-goldAccent/20 focus:border-goldAccent transition-all outline-none"
+                                    {...register('password')}
+                                    className={`w-full pl-11 pr-4 py-3 border rounded-lg text-sm text-navyBlue placeholder:text-navyBlue/30 focus:ring-2 focus:ring-goldAccent/20 transition-all outline-none ${errors.password ? 'border-red-500 focus:border-red-500' : 'border-softSilver focus:border-goldAccent'}`}
                                 />
                             </div>
+                            {errors.password && <p className="mt-1 text-xs text-red-500">{errors.password.message}</p>}
                         </div>
 
-                        {/* Remember Me */}
                         <div className="flex items-center">
                             <input id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 text-goldAccent focus:ring-goldAccent border-softSilver rounded" />
                             <label htmlFor="remember-me" className="ml-2.5 block text-sm text-navyBlue/70">Ingat saya di perangkat ini</label>
                         </div>
 
-                        {/* Submit Button */}
                         <div>
                             <button
                                 type="submit"
-                                className="group w-full flex justify-center items-center gap-3 px-6 py-3.5 bg-navyBlue text-pureWhite font-bold rounded-lg hover:bg-goldAccent hover:text-navyBlue transition-all duration-300 text-sm tracking-wide shadow-lg hover:scale-[1.02]"
+                                disabled={isPending}
+                                className="group w-full flex justify-center items-center gap-3 px-6 py-3.5 bg-navyBlue text-pureWhite font-bold rounded-lg hover:bg-goldAccent hover:text-navyBlue transition-all duration-300 text-sm tracking-wide shadow-lg hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:bg-navyBlue disabled:hover:text-pureWhite"
                             >
-                                Masuk Portal <HiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                {isPending ? 'Memproses...' : 'Masuk Portal'}
+                                {!isPending && <HiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />}
                             </button>
                         </div>
                     </form>
 
-                    {/* Redirect to Sign Up */}
                     <div className="mt-12 text-center border-t border-softSilver pt-8">
                         <p className="text-sm text-navyBlue/70">
                             Belum memiliki akun?{' '}

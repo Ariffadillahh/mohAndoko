@@ -45,9 +45,9 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
     };
 
     const relatedArticles = [
-        { title: "Emas vs Reksa Dana: Mana yang Lebih Cocok untuk Pemula?", category: "Investment", date: "08 Juli 2026", image: "/hero-profile.png" },
-        { title: "Review Instrumen Obligasi Pemerintah Terbaru (SBN)", category: "Wealth Management", date: "01 Juli 2026", image: "/hero-profile.png" },
-        { title: "Cara Mengelola Arus Kas Bisnis agar Tetap Positif", category: "Business", date: "05 Juli 2026", image: "/hero-profile.png" }
+        { title: "Emas vs Reksa Dana: Mana yang Lebih Cocok untuk Pemula?", category: "Investment", date: "08 Juli 2026", image: "/images/andoko/img-3.webp" },
+        { title: "Review Instrumen Obligasi Pemerintah Terbaru (SBN)", category: "Wealth Management", date: "01 Juli 2026", image: "/images/andoko/img-3.webp" },
+        { title: "Cara Mengelola Arus Kas Bisnis agar Tetap Positif", category: "Business", date: "05 Juli 2026", image: "/images/andoko/img-3.webp" }
     ];
 
     return (
@@ -84,7 +84,7 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
                     >
                         <div className="flex items-center gap-4">
                             <div className="w-12 h-12 rounded-full bg-softSilver overflow-hidden border-2 border-pureWhite shadow-sm relative">
-                                <Image src="/hero-profile.png" alt="Author" fill className="object-cover" />
+                                <Image src="/images/andoko/img-3.webp" alt="Author" fill className="object-cover" />
                             </div>
                             <div>
                                 <p className="font-serif text-lg text-navyBlue leading-none mb-1">{article.author}</p>
@@ -108,7 +108,7 @@ export default function BlogDetailPage({ params }: { params: { slug: string } })
                 <div className="max-w-7xl px-6 lg:px-14 mx-auto">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }}
-                        className="relative aspect-[16/7] md:aspect-[21/9] w-full rounded-2xl md:rounded-3xl overflow-hidden bg-navyBlue shadow-2xl border-4 border-pureWhite"
+                        className="relative aspect-[16/7] md:aspect-[21/9] w-full rounded-2xl md:rounded-3xl overflow-hidden bg-navyBlue shadow-2xl"
                     >
                         <Image src={article.image} alt={article.title} fill className="object-cover" />
                     </motion.div>

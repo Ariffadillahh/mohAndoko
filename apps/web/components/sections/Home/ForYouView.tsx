@@ -57,7 +57,7 @@ export function ForYouView() {
             className="relative min-h-[340px] md:min-h-[420px] lg:min-h-full w-full lg:[clip-path:polygon(12%_0,100%_0,100%_100%,0_100%)]"
           >
             <Image
-              src="/hero-profile.png"
+              src="/images/andoko/img-3.webp"
               alt="Mohamad Andoko - Financial Planning"
               fill
               className="object-cover object-center brightness-[0.85] contrast-[1.05]"

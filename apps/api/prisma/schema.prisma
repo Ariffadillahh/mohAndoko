@@ -1,13 +1,185 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  SUPERADMIN
+  USER
+}
+
+enum PublishStatus {
+  DRAFT
+  DITERBITKAN
+}
+
+enum EventType {
+  ONLINE_CLASS
+  OFFLINE_EVENT
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCESS
+  FAILED
+  EXPIRED
+  REFUNDED
+}
+
+enum DiscountType {
+  PERCENTAGE
+  FIXED
+}
+
+model User {
+  id        String  @id @default(uuid())
+  name      String
+  email     String  @unique
+  password  String
+  role      Role    @default(USER)
+  avatarUrl String?
+
+  blogs        Blog[]
+  events       Event[]
+  trackRecords TrackRecord[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Blog {
+  id           String        @id @default(uuid())
+  title        String
+  slug         String        @unique
+  category     String
+  contentHtml  String        @db.Text
+  thumbnailUrl String?
+  status       PublishStatus @default(DRAFT)
+  viewsCount   Int           @default(0)
+  publishedAt  DateTime?
+
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("blogs")
+}
+
+model Event {
+  id           String        @id @default(uuid())
+  title        String
+  slug         String        @unique
+  type         EventType     @default(ONLINE_CLASS)
+  thumbnailUrl String?
+  eventDate    DateTime      @db.Date
+  eventTime    String
+  location     String
+  groupLink    String?
+  price        Int           @default(0)
+  description  String        @db.Text
+  status       PublishStatus @default(DRAFT)
+
+  locationLink String?
+  mapTag       String? @db.Text
+
+  benefits  Json?
+  resources Json?
+
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  orders   Order[]
+  vouchers Voucher[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("events")
+}
+
+model TrackRecord {
+  id           String  @id @default(uuid())
+  programName  String
+  companyName  String
+  location     String
+  thumbnailUrl String?
+
+  authorId String
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("track_records")
+}
+
+
+model Voucher {
+  id            String       @id @default(uuid())
+  code          String       @unique
+  discountType  DiscountType
+  discountValue Int
+  maxDiscount   Int? 
+  quota         Int 
+  usedCount     Int          @default(0)
+  validFrom     DateTime
+  validUntil    DateTime
+  isActive      Boolean      @default(true)
+
+  // Opsional: Jika voucher ini HANYA berlaku untuk event tertentu
+  eventId String?
+  event   Event?  @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  orders Order[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("vouchers")
+}
+
+model Order {
+  id String @id @default(uuid())
+
+  // Custom Order ID yang akan dikirim ke Midtrans (cth: INV-202608-XYZ)
+  orderNumber String  @unique
+  // ID Transaksi dari response Midtrans
+  midtransId  String? @unique
+
+  // Detail Pembeli (Peserta kelas umumnya bukan user CMS, jadi kita simpan datanya saja)
+  customerName  String
+  customerEmail String
+  customerPhone String
+
+  // Rincian Harga
+  basePrice      Int // Harga awal event
+  feeAmount      Int @default(0) // Fee Platform/Midtrans atau Pajak
+  discountAmount Int @default(0) // Total potongan dari voucher
+  finalTotal     Int // (basePrice + feeAmount) - discountAmount
+
+  // Status Transaksi
+  paymentStatus PaymentStatus @default(PENDING)
+  paymentMethod String? // Tipe pembayaran dari Midtrans (cth: "gopay", "bank_transfer")
+  paymentUrl    String? // URL Snap Midtrans untuk redirect pembayaran
+  paidAt        DateTime? // Waktu lunas
+
+  // Relasi Event yang dibeli
+  eventId String
+  event   Event  @relation(fields: [eventId], references: [id], onDelete: Cascade)
+
+  voucherId String?
+  voucher   Voucher? @relation(fields: [voucherId], references: [id], onDelete: SetNull)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("orders")
 }

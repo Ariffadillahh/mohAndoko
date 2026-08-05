@@ -50,7 +50,7 @@ export default function page() {
       location: 'Online via Zoom',
       isOnline: true,
       price: 150000,
-      image: '/hero-profile.png' 
+      image: '/images/andoko/img-3.webp' 
     },
     {
       slug: 'investment-101-stock-market',
@@ -60,7 +60,7 @@ export default function page() {
       location: 'Online via Zoom',
       isOnline: true,
       price: 200000,
-      image: '/hero-profile.png'
+      image: '/images/andoko/img-3.webp'
     },
     {
       slug: 'comprehensive-retirement-planning',
@@ -70,7 +70,7 @@ export default function page() {
       location: 'Hotel Mulia, Jakarta',
       isOnline: false,
       price: 1500000,
-      image: '/hero-profile.png'
+      image: '/images/andoko/img-3.webp'
     }
   ];
 

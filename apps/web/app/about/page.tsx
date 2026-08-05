@@ -71,7 +71,6 @@ export default function TentangSaya() {
                 </div>
             </section>
 
-            {/* ================= 3. OUR WHY ================= */}
             <section className="py-24 md:py-32 bg-pureWhite relative">
                 <div className="max-w-4xl mx-auto px-6 lg:px-12 text-center">
                     <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
@@ -82,7 +81,7 @@ export default function TentangSaya() {
                                 Sepanjang karir saya, saya melihat begitu banyak individu dan keluarga yang bekerja keras setiap hari, namun terjebak dalam masalah finansial hanya karena kurangnya perencanaan dan literasi yang tepat.
                             </p>
                             <p>
-                                Saya menyadari bahwa edukasi keuangan tidak boleh hanya menjadi hak eksklusif segelintir orang. Misi terbesar saya adalah <strong>mendekratisasi akses terhadap perencanaan keuangan</strong>, memecah konsep yang terlihat rumit menjadi langkah-langkah nyata yang bisa diterapkan oleh siapa saja untuk mencapai kesejahteraan (*wellness*) dan ketenangan pikiran (*peace of mind*).
+                                Saya menyadari bahwa edukasi keuangan tidak boleh hanya menjadi hak eksklusif segelintir orang. Misi terbesar saya adalah <strong>mendekratisasi akses terhadap perencanaan keuangan</strong>, memecah konsep yang terlihat rumit menjadi langkah-langkah nyata yang bisa diterapkan oleh siapa saja untuk mencapai kesejahteraan (wellness) dan ketenangan pikiran (peace of mind).
                             </p>
                         </div>
                     </motion.div>

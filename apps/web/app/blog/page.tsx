@@ -31,26 +31,26 @@ export default function BlogPage() {
         category: "Wealth Management",
         date: "24 Juli 2026",
         time: "10:30 WIB",
-        image: "/hero-profile.png"
+        image: "/images/andoko/img-3.webp"
     };
 
     const featuredArticles = [
-        { slug: "5-langkah-financial-check-up", title: "5 Langkah Melakukan Financial Check-Up Mandiri di Pertengahan Tahun", category: "Personal Finance", date: "23 Juli 2026", image: "/hero-profile.png" },
-        { slug: "financial-wellness-prioritas-hrd", title: "Mengapa Financial Wellness Karyawan Kini Jadi Prioritas HRD?", category: "Corporate", date: "22 Juli 2026", image: "/hero-profile.png" },
+        { slug: "5-langkah-financial-check-up", title: "5 Langkah Melakukan Financial Check-Up Mandiri di Pertengahan Tahun", category: "Personal Finance", date: "23 Juli 2026", image: "/images/andoko/img-3.webp" },
+        { slug: "financial-wellness-prioritas-hrd", title: "Mengapa Financial Wellness Karyawan Kini Jadi Prioritas HRD?", category: "Corporate", date: "22 Juli 2026", image: "/images/andoko/img-3.webp" },
     ];
 
     const latestArticles = [
-        { slug: "persiapan-dana-pendidikan-anak", title: "Mempersiapkan Dana Pendidikan Anak: Mulai dari Mana?", excerpt: "Biaya pendidikan naik rata-rata 10-15% per tahun. Simak instrumen yang tepat untuk menyiapkannya.", category: "Education", date: "20 Juli 2026", image: "/hero-profile.png" },
-        { slug: "kesalahan-perencanaan-pensiun", title: "Kesalahan Umum dalam Perencanaan Pensiun yang Harus Dihindari", excerpt: "Banyak pekerja terjebak pada ilusi dana pensiun dari perusahaan. Ketahui cara menghitung kebutuhan riil Anda.", category: "Retirement", date: "18 Juli 2026", image: "/hero-profile.png" },
-        { slug: "mindset-investasi-jangka-panjang", title: "Membangun Mindset Investasi Jangka Panjang di Tengah Pasar Volatil", excerpt: "Kunci sukses investasi bukanlah market timing, melainkan time in the market. Berikut panduannya.", category: "Investment", date: "15 Juli 2026", image: "/hero-profile.png" },
-        { slug: "pentingnya-asuransi-keuangan", title: "Pentingnya Asuransi dalam Piramida Keuangan Keluarga", excerpt: "Jangan sampai aset yang dikumpulkan bertahun-tahun habis seketika karena risiko tak terduga.", category: "Protection", date: "12 Juli 2026", image: "/hero-profile.png" },
+        { slug: "persiapan-dana-pendidikan-anak", title: "Mempersiapkan Dana Pendidikan Anak: Mulai dari Mana?", excerpt: "Biaya pendidikan naik rata-rata 10-15% per tahun. Simak instrumen yang tepat untuk menyiapkannya.", category: "Education", date: "20 Juli 2026", image: "/images/andoko/img-3.webp" },
+        { slug: "kesalahan-perencanaan-pensiun", title: "Kesalahan Umum dalam Perencanaan Pensiun yang Harus Dihindari", excerpt: "Banyak pekerja terjebak pada ilusi dana pensiun dari perusahaan. Ketahui cara menghitung kebutuhan riil Anda.", category: "Retirement", date: "18 Juli 2026", image: "/images/andoko/img-3.webp" },
+        { slug: "mindset-investasi-jangka-panjang", title: "Membangun Mindset Investasi Jangka Panjang di Tengah Pasar Volatil", excerpt: "Kunci sukses investasi bukanlah market timing, melainkan time in the market. Berikut panduannya.", category: "Investment", date: "15 Juli 2026", image: "/images/andoko/img-3.webp" },
+        { slug: "pentingnya-asuransi-keuangan", title: "Pentingnya Asuransi dalam Piramida Keuangan Keluarga", excerpt: "Jangan sampai aset yang dikumpulkan bertahun-tahun habis seketika karena risiko tak terduga.", category: "Protection", date: "12 Juli 2026", image: "/images/andoko/img-3.webp" },
     ];
 
     const trendingArticles = [
-        { slug: "panduan-lapor-spt-tahunan", title: "Pajak Penghasilan: Panduan Lengkap Pelaporan SPT Tahunan", category: "Tax Planning", date: "10 Juli 2026", image: "/hero-profile.png" },
-        { slug: "emas-vs-reksa-dana", title: "Emas vs Reksa Dana: Mana yang Lebih Cocok untuk Pemula?", category: "Investment", date: "08 Juli 2026", image: "/hero-profile.png" },
-        { slug: "mengelola-arus-kas-bisnis", title: "Cara Mengelola Arus Kas Bisnis agar Tetap Positif", category: "Business", date: "05 Juli 2026", image: "/hero-profile.png" },
-        { slug: "review-obligasi-pemerintah", title: "Review Instrumen Obligasi Pemerintah Terbaru", category: "Wealth Management", date: "01 Juli 2026", image: "/hero-profile.png" },
+        { slug: "panduan-lapor-spt-tahunan", title: "Pajak Penghasilan: Panduan Lengkap Pelaporan SPT Tahunan", category: "Tax Planning", date: "10 Juli 2026", image: "/images/andoko/img-3.webp" },
+        { slug: "emas-vs-reksa-dana", title: "Emas vs Reksa Dana: Mana yang Lebih Cocok untuk Pemula?", category: "Investment", date: "08 Juli 2026", image: "/images/andoko/img-3.webp" },
+        { slug: "mengelola-arus-kas-bisnis", title: "Cara Mengelola Arus Kas Bisnis agar Tetap Positif", category: "Business", date: "05 Juli 2026", image: "/images/andoko/img-3.webp" },
+        { slug: "review-obligasi-pemerintah", title: "Review Instrumen Obligasi Pemerintah Terbaru", category: "Wealth Management", date: "01 Juli 2026", image: "/images/andoko/img-3.webp" },
     ];
 
     return (
@@ -83,7 +83,6 @@ export default function BlogPage() {
                             <motion.div variants={containerVariants} initial="hidden" animate="visible" className="grid md:grid-cols-2 gap-8">
                                 {latestArticles.map((article, idx) => (
                                     <motion.div key={idx} variants={itemVariants} className="group cursor-pointer">
-                                        {/* Dibungkus dengan Link */}
                                         <Link href={`/blog/${article.slug}`} className="block">
                                             <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden bg-softSilver mb-5 shadow-sm">
                                                 <Image src={article.image} alt={article.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
@@ -108,7 +107,7 @@ export default function BlogPage() {
                             </motion.div>
                         </div>
 
-                        <div>
+                        <div className="sticky top-24 space-y-10 self-start">
                             <div className="mb-8 flex items-center gap-3 border-b-2 border-navyBlue/10 pb-3">
                                 <HiOutlineTrendingUp className="w-6 h-6 text-goldAccent" />
                                 <h3 className="font-serif text-2xl text-navyBlue">Terpopuler</h3>
@@ -117,7 +116,6 @@ export default function BlogPage() {
                             <motion.div variants={containerVariants} initial="hidden" animate="visible" className="flex flex-col gap-6">
                                 {trendingArticles.map((article, idx) => (
                                     <motion.div key={idx} variants={itemVariants}>
-                                        {/* Dibungkus dengan Link */}
                                         <Link href={`/blog/${article.slug}`} className="group flex items-center gap-4 border-b border-softSilver pb-6 last:border-0">
                                             <div className="relative w-24 h-24 shrink-0 rounded-xl overflow-hidden bg-softSilver shadow-sm">
                                                 <Image src={article.image} alt={article.title} fill className="object-cover group-hover:scale-110 transition-transform duration-500" />

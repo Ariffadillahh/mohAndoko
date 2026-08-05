@@ -9,11 +9,11 @@ import { useRef, useState } from "react";
 
 // Data statis bisa diletakkan di luar komponen
 const trackRecords = [
-    { title: "Brillian Leader Retirement Program", client: "Bank BRI", location: "Malang", img: "/hero-profile.png" },
-    { title: "Strategi Pajak Penghasilan Pribadi", client: "Kompas Institute", location: "Jakarta", img: "/hero-profile.png" },
-    { title: "Financial Planning for Community", client: "Komunitas", location: "Jakarta", img: "/hero-profile.png" },
-    { title: "Wealth Management Masterclass", client: "Bank Mandiri", location: "Bandung", img: "/hero-profile.png" },
-    { title: "Employee Financial Wellness", client: "Pertamina", location: "Surabaya", img: "/hero-profile.png" }
+    { title: "Brillian Leader Retirement Program", client: "Bank BRI", location: "Malang", img: "/images/andoko/img-3.webp" },
+    { title: "Strategi Pajak Penghasilan Pribadi", client: "Kompas Institute", location: "Jakarta", img: "/images/andoko/img-3.webp" },
+    { title: "Financial Planning for Community", client: "Komunitas", location: "Jakarta", img: "/images/andoko/img-3.webp" },
+    { title: "Wealth Management Masterclass", client: "Bank Mandiri", location: "Bandung", img: "/images/andoko/img-3.webp" },
+    { title: "Employee Financial Wellness", client: "Pertamina", location: "Surabaya", img: "/images/andoko/img-3.webp" }
 ];
 
 export function ForBusinessView() {
@@ -93,7 +93,7 @@ export function ForBusinessView() {
                         className="relative min-h-[340px] md:min-h-[420px] lg:min-h-full w-full lg:[clip-path:polygon(12%_0,100%_0,100%_100%,0_100%)]"
                     >
                         <Image
-                            src="/hero-profile.png"
+                            src="/images/andoko/img-3.webp"
                             alt="Corporate Training & Financial Wellness"
                             fill
                             className="object-cover object-center brightness-[0.85] contrast-[1.05]"

@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
-import { Cormorant_Garamond, Google_Sans_Flex, Inter } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
-import Navbar from '../components/layout/Navbar';
-import Footer from '../components/layout/Footer';
 import localFont from 'next/font/local';
 import ConditionalLayout from '../components/layout/ConditionalLayout';
+import QueryProvider from '../providers/QueryProvider';
+import Navbar from '../components/layout/Navbar';
+import Footer from '../components/layout/Footer';
 
 const advercase = localFont({
   src: [
@@ -39,10 +40,6 @@ const inter = Inter({
   display: 'swap',
 });
 
-const googleSansFlex = Google_Sans_Flex({
-  variable: "--font-google-sans-flex",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Cerdas Keuangan | Financial Planning Consultant",
@@ -55,11 +52,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="id" className={`${advercase.variable} ${inter.variable} ${googleSansFlex.variable}`}>
+    <html lang="id" className={`${advercase.variable} ${inter.variable}`}>
       <body className="font-sans bg-pureWhite text-navyBlue antialiased selection:bg-goldAccent selection:text-navyBlue">
-        <ConditionalLayout>
-          {children}
-        </ConditionalLayout>
+        <QueryProvider>
+          <ConditionalLayout navbar={<Navbar />} footer={<Footer />}>
+            {children}
+          </ConditionalLayout>
+        </QueryProvider>
       </body>
     </html>
   );
